@@ -1,0 +1,32 @@
+{
+  "name": "handradi-file",
+  "version": "1.0.0",
+  "description": "MedusaJS plugin for handling files with Handraði file server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && tsc --build ./tsconfig.json",
+    "watch": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivar1309/handradi-file.git"
+  },
+  "keywords": [
+    "MedusaJS",
+    "plugin",
+    "file"
+  ],
+  "author": "Ívar Árnason",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivar1309/handradi-file/issues"
+  },
+  "homepage": "https://github.com/ivar1309/handradi-file#readme",
+  "devDependencies": {
+    "@medusajs/framework": "^2.8.8",
+    "@swc/core": "^1.13.3",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.2"
+  }
+}
