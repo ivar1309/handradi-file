@@ -51,8 +51,9 @@ class HandradiFileProviderService extends AbstractFileProviderService {
         files: FileTypes.ProviderDeleteFileDTO | FileTypes.ProviderDeleteFileDTO[]
     ): Promise<void> {
         const fileArray = Array.isArray(files) ? files : [files]
+        this.logger_.info(`Handradi: delete files -> ${fileArray}`)
         for (const file of fileArray) {
-            this.logger_.info(`Handradi: delete -> ${file.fileKey}`)
+            this.logger_.info(`Handradi: delete file -> ${file.fileKey}`)
             await this.client.delete(file.fileKey)
         }
     }
