@@ -53,7 +53,7 @@ class HandradiFileProviderService extends AbstractFileProviderService {
         const fileArray = Array.isArray(files) ? files : [files]
         for (const file of fileArray) {
             this.logger_.info(`Handradi: delete -> ${file.fileKey}`)
-            this.client.delete(file.fileKey)
+            await this.client.delete(file.fileKey)
         }
     }
 
