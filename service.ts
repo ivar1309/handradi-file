@@ -1,6 +1,6 @@
 import { Logger, FileTypes } from "@medusajs/framework/types"
 import { AbstractFileProviderService } from "@medusajs/framework/utils"
-import { HandradiClient } from "./HandradiClient/Client.js"
+import HandradiClient from "./HandradiClient/Client.js"
 
 type InjectedDependencies = {
     logger: Logger
