@@ -24,7 +24,7 @@ class HandradiClient {
         }
 
         return {
-            url: `${this.baseUrl}/download?client=${this.clientId}&filename=${encodeURIComponent(file.filename)}`,
+            url: `${this.externalUrl}/download?client=${this.clientId}&filename=${encodeURIComponent(file.filename)}`,
             key: file.filename
         }
     }
