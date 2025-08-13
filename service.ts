@@ -37,6 +37,7 @@ class HandradiFileProviderService extends AbstractFileProviderService {
         let fileUrlAndKey
         try {
             fileUrlAndKey = await this.client.upload(file)
+            this.logger_.info(`Handradi: upload -> ${fileUrlAndKey.key} : ${fileUrlAndKey.url}`)
         } catch (error) {
             this.logger_.error(error)
             throw error
@@ -50,17 +51,20 @@ class HandradiFileProviderService extends AbstractFileProviderService {
     ): Promise<void> {
         const fileArray = Array.isArray(files) ? files : [files]
         for (const file of fileArray) {
+            this.logger_.info(`Handradi: delete -> ${file.fileKey}`)
             this.client.delete(file.fileKey)
         }
     }
 
     async getAsBuffer(file: FileTypes.ProviderDeleteFileDTO): Promise<Buffer> {
+        this.logger_.info(`Handradi: buffer -> ${file.fileKey}`)
         return this.client.get(file.fileKey).stream
     }
 
     async getDownloadStream(
         file: FileTypes.ProviderGetFileDTO
     ): Promise<Readable> {
+        this.logger_.info(`Handradi: stream -> ${file.fileKey}`)
         return this.client.get(file.fileKey).stream
     }
 
@@ -68,7 +72,9 @@ class HandradiFileProviderService extends AbstractFileProviderService {
     async getPresignedDownloadUrl(
         file: FileTypes.ProviderGetFileDTO
     ): Promise<string> {
-        return this.client.get(file.fileKey).url
+        this.logger_.info(`Handradi: presigned url -> ${file.fileKey}`)
+        let url = this.client.get(file.fileKey).url
+        return url
     }
 }
 
