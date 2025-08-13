@@ -1,6 +1,7 @@
 class HandradiClient {
     constructor(options) {
         this.baseUrl = options.baseUrl
+        this.externalUrl = options.externalUrl
         this.apiKey = options.apiKey
         this.clientId = options.clientId
     }
@@ -15,7 +16,7 @@ class HandradiClient {
             headers: {
                 "x-api-key": this.apiKey,
             },
-            body: file.content,
+            body: Buffer.from(file.content, "binary"),
         })
 
         if (!resp.ok) {
@@ -47,7 +48,7 @@ class HandradiClient {
     }
 
     async get(fileKey) {
-        const url = new URL(this.baseUrl + "/download")
+        const url = new URL(this.externalUrl + "/download")
         url.searchParams.set("client", this.clientId)
         url.searchParams.set("filename", fileKey)
 

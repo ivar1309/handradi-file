@@ -8,6 +8,7 @@ type InjectedDependencies = {
 
 type Options = {
     baseUrl: string
+    externalUrl: string
     apiKey: string
     clientId: string
 }
