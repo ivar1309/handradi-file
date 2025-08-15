@@ -70,7 +70,7 @@ class HandradiClient {
     }
 
     async getPresignedUploadUrl(file) {
-        const url = new URL(this.externalUrl + "/presignurl")
+        const url = new URL(this.baseUrl + "/presignurl")
         url.searchParams.set("client", this.clientId)
         url.searchParams.set("filename", file.filename)
 
@@ -78,7 +78,7 @@ class HandradiClient {
             method: "GET",
             headers: {
                 "x-api-key": this.apiKey,
-            }
+            },
         })
 
         if (!resp.ok) {
