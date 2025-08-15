@@ -75,11 +75,10 @@ class HandradiClient {
         url.searchParams.set("filename", file.filename)
 
         const resp = await fetch(url.toString(), {
-            method: "POST",
+            method: "GET",
             headers: {
                 "x-api-key": this.apiKey,
-            },
-            body: Buffer.from(file.content, "binary"),
+            }
         })
 
         if (!resp.ok) {
