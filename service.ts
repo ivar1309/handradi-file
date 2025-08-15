@@ -86,7 +86,7 @@ class HandradiFileProviderService extends AbstractFileProviderService {
         file: FileTypes.ProviderGetPresignedUploadUrlDTO
     ): Promise<FileTypes.ProviderFileResultDTO> {
         this.logger_.info(`Handradi: presigned upload url -> ${file.filename}`)
-        let res = this.client.getPresignedUploadUrl(file)
+        let res = await this.client.getPresignedUploadUrl(file)
         this.logger_.info(`Handradi: getPresignedUploadUrl -> ${res}`)
         return res
     } 
