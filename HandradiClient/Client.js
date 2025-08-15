@@ -89,7 +89,7 @@ class HandradiClient {
         let value = await resp.json()
 
         return {
-            url: `${this.baseUrl}${value.url}`,
+            url: `${this.externalUrl}${value.url}`,
             key: file.filename
         }        
     }
