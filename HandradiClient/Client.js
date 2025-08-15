@@ -89,7 +89,7 @@ class HandradiClient {
 
         return {
             url: `${this.baseUrl}${value.url}`,
-            key: filename
+            key: file.filename
         }        
     }
 }   
