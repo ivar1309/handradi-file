@@ -48,7 +48,7 @@ class HandradiClient {
     }
 
     async get(fileKey) {
-        const url = new URL(this.externalUrl + "/download")
+        const url = new URL(this.baseUrl + "/download")
         url.searchParams.set("client", this.clientId)
         url.searchParams.set("filename", fileKey)
 

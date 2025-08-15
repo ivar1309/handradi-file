@@ -59,7 +59,9 @@ class HandradiFileProviderService extends AbstractFileProviderService {
         }
     }
 
-    async getAsBuffer(file: FileTypes.ProviderDeleteFileDTO): Promise<Buffer> {
+    async getAsBuffer(
+        file: FileTypes.ProviderDeleteFileDTO
+    ): Promise<Buffer> {
         this.logger_.info(`Handradi: buffer -> ${file.fileKey}`)
         let result = await this.client.get(file.fileKey)
         return Buffer.from(result.buffer)
@@ -83,7 +85,7 @@ class HandradiFileProviderService extends AbstractFileProviderService {
     async getPresignedUploadUrl(
         file: FileTypes.ProviderGetPresignedUploadUrlDTO
     ): Promise<FileTypes.ProviderFileResultDTO> {
-        this.logger_.info(`Handradi: presigned upload url -> ${file.fileKey}`)
+        this.logger_.info(`Handradi: presigned upload url -> ${file.filename}`)
         return this.client.getPresignedUploadUrl(file)
     } 
 
