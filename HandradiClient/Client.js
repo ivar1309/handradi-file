@@ -68,6 +68,31 @@ class HandradiClient {
             url: url.toString(),
         }
     }
+
+    async getPresignedUploadUrl(file) {
+        const url = new URL(this.externalUrl + "/presignurl")
+        url.searchParams.set("client", this.clientId)
+        url.searchParams.set("filename", file.filename)
+
+        const resp = await fetch(url.toString(), {
+            method: "POST",
+            headers: {
+                "x-api-key": this.apiKey,
+            },
+            body: Buffer.from(file.content, "binary"),
+        })
+
+        if (!resp.ok) {
+            throw new Error(`Get failed: ${resp.status} ${await resp.text()}`)
+        }
+
+        let value = await resp.json()
+
+        return {
+            url: value.url,
+            key: filename
+        }        
+    }
 }   
 
 export default HandradiClient
