@@ -65,6 +65,7 @@ class HandradiClient {
 
         return {
             stream: resp.body,
+            buffer: resp.arrayBuffer(),
             url: url.toString(),
         }
     }

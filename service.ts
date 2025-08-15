@@ -1,5 +1,6 @@
 import { Logger, FileTypes } from "@medusajs/framework/types"
 import { AbstractFileProviderService } from "@medusajs/framework/utils"
+import { Readable } from "stream"
 import HandradiClient from "./HandradiClient/Client.js"
 
 type InjectedDependencies = {
@@ -60,28 +61,29 @@ class HandradiFileProviderService extends AbstractFileProviderService {
 
     async getAsBuffer(file: FileTypes.ProviderDeleteFileDTO): Promise<Buffer> {
         this.logger_.info(`Handradi: buffer -> ${file.fileKey}`)
-        return this.client.get(file.fileKey).stream
+        let result = await this.client.get(file.fileKey)
+        return Buffer.from(result.buffer)
     }
 
     async getDownloadStream(
         file: FileTypes.ProviderGetFileDTO
     ): Promise<Readable> {
         this.logger_.info(`Handradi: stream -> ${file.fileKey}`)
-        return this.client.get(file.fileKey).stream
+        return this.client.get(file.fileKey).stream as Readable
     }
 
     
     async getPresignedDownloadUrl(
         file: FileTypes.ProviderGetFileDTO
     ): Promise<string> {
-        this.logger_.info(`Handradi: presigned url -> ${file.fileKey}`)
-        let url = this.client.get(file.fileKey).url
-        return url
+        this.logger_.info(`Handradi: presigned download url -> ${file.fileKey}`)
+        return this.client.get(file.fileKey).url
     }
 
     async getPresignedUploadUrl(
         file: FileTypes.ProviderGetPresignedUploadUrlDTO
     ): Promise<FileTypes.ProviderFileResultDTO> {
+        this.logger_.info(`Handradi: presigned upload url -> ${file.fileKey}`)
         return this.client.getPresignedUploadUrl(file)
     } 
 
